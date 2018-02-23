@@ -1,8 +1,9 @@
-$button-padding: 0.75rem;
+$button-padding: 0.50rem;
 $message-padding: 0.75rem;
-$background-color: rgb(213, 197, 200);
+$background-color: rgb(241, 149, 149);
 $user-message-color: rgb(96, 77, 158);
 $remote-message-color: rgb(219, 127, 142);
+$plain-button-color: rgba(251, 255, 255, 0.384);
 
 html {
     background-color: $background-color;

@@ -1,21 +1,3 @@
-.MessageContainer {
-    display: flex;
-    opacity: 0;
-    transition: 0.5;
-    &--user {
-        justify-content: flex-start;
-        &.show {
-            opacity: 1;
-        }
-    }
-    &--remote {
-        justify-content: flex-end;
-        &.show {
-            opacity: 1;
-        }
-    }
-}
-
 .Message {
     padding: $message-padding;
     display: inline-block;

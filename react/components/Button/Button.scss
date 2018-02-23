@@ -4,18 +4,20 @@
     border: none;
     border-radius: 12px;
     margin-bottom: 1rem;
+    margin-right: 0.5rem;
     color: white;
     font-weight: bold;
     font-size: 14px;
+    width: 100%;
     transition: 0.25s;
     &:hover {
         transform: translateY(-0.25em);
     }
     &--plain {
-        background-color: rgb(210, 213, 213);
-        color: black;
+        background-color: $plain-button-color;
+        color: rgb(105, 105, 105);
     }
     &--disabled {
-        background-color: rgb(213, 197, 200);
+        background-color: $background-color;
     }
 }

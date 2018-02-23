@@ -6,17 +6,11 @@ import Message from '../components/Message';
 
 storiesOf('Message', module)
     .add('user_message', () => (
-        <Message show={true} origin="user">
-            I am a user and this is my message
-        </Message>
+        <Message origin="user">I am a user and this is my message</Message>
     ))
     .add('bot_message', () => (
-        <Message show={true} modifiers="show" origin="remote">
-            I am a bot and this is my will.
-        </Message>
+        <Message origin="remote">I am a bot and this is my will.</Message>
     ))
     .add('old_message', () => (
-        <Message show={true} modifiers="Message--old show">
-            Old message here
-        </Message>
+        <Message modifiers="Message--old show">Old message here</Message>
     ));
