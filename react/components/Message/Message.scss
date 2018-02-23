@@ -1,0 +1,38 @@
+.MessageContainer {
+    display: flex;
+    opacity: 0;
+    transition: 0.5;
+    &--user {
+        justify-content: flex-start;
+        &.show {
+            opacity: 1;
+        }
+    }
+    &--remote {
+        justify-content: flex-end;
+        &.show {
+            opacity: 1;
+        }
+    }
+}
+
+.Message {
+    padding: $message-padding;
+    display: inline-block;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    transition: 0.5s;
+    
+    &--user {
+        background-color: $user-message-color;
+        border-bottom-left-radius: 0px;
+    }
+    &--remote {
+        background-color: $remote-message-color;
+        border-bottom-right-radius: 0px;
+    }
+    &--old {
+        background-color: $background-color;
+    }
+}

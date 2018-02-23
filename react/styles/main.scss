@@ -1,0 +1,11 @@
+$button-padding: 0.75rem;
+$message-padding: 0.75rem;
+$background-color: rgb(213, 197, 200);
+$user-message-color: rgb(96, 77, 158);
+$remote-message-color: rgb(219, 127, 142);
+
+html {
+    background-color: $background-color;
+}
+
+@import "../components/**/*.scss";

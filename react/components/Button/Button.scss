@@ -1,0 +1,21 @@
+.Button {
+    padding: $button-padding;
+    display: block;
+    border: none;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    transition: 0.25s;
+    &:hover {
+        transform: translateY(-0.25em);
+    }
+    &--plain {
+        background-color: rgb(210, 213, 213);
+        color: black;
+    }
+    &--disabled {
+        background-color: rgb(213, 197, 200);
+    }
+}
