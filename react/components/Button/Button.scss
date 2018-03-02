@@ -15,9 +15,10 @@
     }
     &--plain {
         background-color: $plain-button-color;
-        color: rgb(105, 105, 105);
+        color: $text-color;
     }
     &--disabled {
-        background-color: $background-color;
+        background-color: $disabled-color;
+        color: $disabled-text-color;
     }
 }

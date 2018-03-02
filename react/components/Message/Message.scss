@@ -1,7 +1,7 @@
 .Message {
     padding: $message-padding;
     display: inline-block;
-    color: white;
+    color: $text-color;
     border: none;
     border-radius: 10px;
     transition: 0.5s;
@@ -15,6 +15,7 @@
         border-bottom-right-radius: 0px;
     }
     &--old {
-        background-color: $background-color;
+        background-color: $disabled-color;
+        color: $disabled-text-color;
     }
 }

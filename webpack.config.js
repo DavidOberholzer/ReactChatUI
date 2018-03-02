@@ -4,11 +4,23 @@ module.exports = {
     entry: './react/main.js',
     output: {
         path: __dirname + '/src/',
-        filename: 'react-chat-ui.js',
+        filename: 'index.js',
         publicPath: '/src/'
     },
     module: {
         rules: [
+            {
+                test: /\.js$/,
+                exclude: '/node_modules/',
+                use: [
+                    {
+                        loader: 'babel-loader',
+                        options: {
+                            presets: ['react', 'es2015', 'stage-0']
+                        }
+                    }
+                ]
+            },
             {
                 test: /\.s[c|a]ss$/,
                 use: ExtractTextPlugin.extract({

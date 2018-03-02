@@ -9,6 +9,7 @@ const MessageContainer = ({
     origin,
     text,
     buttons,
+    lastMessage,
     onClick,
     ...rest
 }) => (
@@ -22,7 +23,10 @@ const MessageContainer = ({
                 origin ? origin : 'remote'
             }`}
         >
-            <Message modifiers={modifiers} origin={origin}>
+            <Message
+                modifiers={`${modifiers} ${lastMessage ? '' : 'Message--old'}`}
+                origin={origin}
+            >
                 {text}
             </Message>
         </div>
@@ -33,8 +37,10 @@ const MessageContainer = ({
                     return (
                         <Button
                             key={id}
-                            modifiers="Button--plain"
-                            onClick={onClick}
+                            modifiers={`Button--plain ${
+                                lastMessage ? '' : 'Button--disabled'
+                            }`}
+                            onClick={() => onClick(button)}
                         >
                             {button.text}
                         </Button>
