@@ -4,16 +4,17 @@ import PropTypes from 'prop-types';
 
 import MessageContainer from '../MessageContainer';
 import { MESSAGE_ADD } from '../../actionTypes';
+import { randomId } from '../../utils/generation';
 
-const mapStateToProps = state => ({
-    messages: state.messages
+const mapStateToProps = ({ messages }) => ({
+    messages: messages.messages
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
     onClick: message => {
         dispatch({
             type: MESSAGE_ADD,
-            payload: button
+            payload: message
         });
     }
 });
@@ -24,24 +25,28 @@ class ChatContainer extends React.Component {
     }
 
     componentDidUpdate() {
-        scrollIntoView({
-            behavior: 'smooth',
-            block: 'end',
-            inline: 'end'
-        });
+        this._last &&
+            this._last.scrollIntoView({
+                behavior: 'smooth',
+                block: 'end',
+                inline: 'end'
+            });
     }
 
     render() {
-        let { messages, Sock, onClick } = this.props;
+        let { messages, WebSocket, onClick } = this.props;
         let add = message => {
-            Sock.send(message);
-            onClick(message);
+            WebSocket.send(JSON.stringify(message));
+            onClick({
+                ...message,
+                origin: 'user'
+            });
         };
 
         return (
             <div className="ChatContainer">
                 {messages.map((message, index) => {
-                    let id = message.id;
+                    let id = randomId();
                     let lastMessage = index === messages.length - 1;
                     return (
                         <MessageContainer

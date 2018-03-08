@@ -3,12 +3,13 @@
     "version": "0.1",
     "description": "A react based chat UI",
     "main": "lib/index.js",
-    "module": "es/index.js",
+    "files": ["css", "lib", "umd"],
     "repository": "https://github.com/DavidOberholzer/ReactChatUI",
     "author": "David Oberholzer",
     "license": "MIT",
     "scripts": {
-        "build": "webpack --colors --progress && nwb build-react-component",
+        "build:nwb": "nwb build-react-component react/index.js",
+        "build:webpack": "webpack --colors --progress",
         "storybook": "start-storybook -p 9001 -c react/.storybook",
         "storybook:build": "build-storybook -c react/.storybook -o react/.out"
     },

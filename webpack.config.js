@@ -4,7 +4,7 @@ module.exports = {
     entry: './react/main.js',
     output: {
         path: __dirname + '/src/',
-        filename: 'index.js',
+        filename: 'react-chat-ui.js',
         publicPath: '/src/'
     },
     module: {

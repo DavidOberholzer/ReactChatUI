@@ -1,5 +1,7 @@
 html {
-  background-color: #fdcdcd; }
+  background-color: #fdcdcd;
+  margin-left: 35%;
+  margin-right: 35%; }
 
 .Button {
   padding: 0.5rem;

@@ -1,12 +1,9 @@
 module.exports = {
     type: 'react-component',
     npm: {
-        esModules: true,
+        esModules: false,
         umd: {
-            global: 'ReactChatUI',
-            externals: {
-                react: 'React'
-            }
+            global: 'ReactChatUI'
         }
     }
 };

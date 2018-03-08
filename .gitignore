@@ -2,3 +2,5 @@ node_modules/
 yarn.lock
 lib/
 es/
+umd/
+yarn-error.log

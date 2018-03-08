@@ -4,26 +4,29 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import ChatContainer from './components/ChatContainer';
-import Sock from './utils/client';
-import { addMessage } from './actions/messages';
+import WebSocket from './utils/client';
+import { messageAdd } from './actions/messages';
+import { randomId } from './utils/generation';
 
-export const ChatComponent = (url, config) => {
-    const add = message => store.dispatch(addMessage(message));
-    let sock = Sock(add);
+export const ChatComponent = ({ url, config }) => {
+    console.log(url);
+    console.log(config);
+    const add = message => store.dispatch(messageAdd(message));
+    let webSocket = WebSocket(url, config, add);
     return (
         <Provider store={store}>
-            <ChatContainer Sock={sock} />
+            <ChatContainer WebSocket={webSocket} />
         </Provider>
     );
 };
 
 class ReactChatUI {
     constructor(
-        { element, url } = {
+        { element, workflowID, sessionID, url } = {
             element,
             workflowID,
-            sessionID,
-            url: 'http://localhost:3000'
+            sessionID: randomId,
+            url: 'http://localhost:3000/chat'
         }
     ) {
         if (element && element.nodeName) {
@@ -44,3 +47,5 @@ class ReactChatUI {
         }
     }
 }
+
+export default ReactChatUI;

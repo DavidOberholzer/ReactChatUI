@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import Button from '../Button';
 import Message from '../Message';
+import { randomId } from '../../utils/generation';
 
 const MessageContainer = ({
     modifiers,
@@ -33,7 +34,7 @@ const MessageContainer = ({
         {buttons ? (
             <div className="ButtonContainer">
                 {buttons.map(button => {
-                    let id = button.id;
+                    let id = randomId();
                     return (
                         <Button
                             key={id}

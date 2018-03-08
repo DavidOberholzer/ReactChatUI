@@ -1,20 +1,21 @@
-import SockJS from 'sockjs-client';
+let webSocket = null;
 
-let sock = null;
-
-export default (getSockClient = (url, config, receiveHandler) => {
-    if (!sock) {
-        sock = new SockJS(url);
-        sock.onopen = () => {
-            console.log('Sock JS connection opened!');
+const getWebSocketClient = (url, config, receiveHandler) => {
+    if (!webSocket) {
+        webSocket = new WebSocket(url);
+        webSocket.onopen = () => {
+            console.log('WebSocket connection opened!');
         };
-        sock.onmessage = event => {
+        webSocket.onmessage = event => {
             console.log('Message Received');
-            receiveHandler(event.data);
+            console.log(event.data);
+            receiveHandler(JSON.parse(event.data));
         };
-        sock.onclose = () => {
-            console.log('Sock JS Connection closed!');
+        webSocket.onclose = () => {
+            console.log('WebSocket Connection closed!');
         };
     }
-    return sock;
-});
+    return webSocket;
+};
+
+export default getWebSocketClient;
