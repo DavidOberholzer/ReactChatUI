@@ -2,7 +2,6 @@
     padding: $button-padding;
     display: block;
     border: none;
-    border-radius: 12px;
     margin-bottom: 1rem;
     margin-right: 0.5rem;
     color: white;
@@ -15,7 +14,6 @@
     }
     &--plain {
         background-color: $plain-button-color;
-        color: $text-color;
     }
     &--disabled {
         background-color: $disabled-color;

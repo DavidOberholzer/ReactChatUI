@@ -2,22 +2,18 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import { messageAdd } from '../../actions/messages';
+import InputBar from '../InputBar';
 import MessageContainer from '../MessageContainer';
 import { MESSAGE_ADD } from '../../actionTypes';
 import { randomId } from '../../utils/generation';
 
-const mapStateToProps = ({ messages }) => ({
-    messages: messages.messages
-});
-
-const mapDispatchToProps = (dispatch, ownProps) => ({
-    onClick: message => {
-        dispatch({
-            type: MESSAGE_ADD,
-            payload: message
-        });
-    }
-});
+const mapStateToProps = state => {
+    console.log(state);
+    return {
+        messages: state.messages.messages
+    };
+};
 
 class ChatContainer extends React.Component {
     constructor(props) {
@@ -34,31 +30,33 @@ class ChatContainer extends React.Component {
     }
 
     render() {
-        let { messages, WebSocket, onClick } = this.props;
-        let add = message => {
-            WebSocket.send(JSON.stringify(message));
-            onClick({
-                ...message,
-                origin: 'user'
-            });
-        };
-
+        const { messages } = this.props;
+        let showInput = false;
+        if (messages.length > 0) {
+            showInput = !!messages[messages.length - 1].input;
+        }
         return (
             <div className="ChatContainer">
-                {messages.map((message, index) => {
-                    let id = randomId();
-                    let lastMessage = index === messages.length - 1;
-                    return (
-                        <MessageContainer
-                            key={id}
-                            origin={message.origin}
-                            text={message.text}
-                            buttons={message.buttons}
-                            lastMessage={lastMessage}
-                            onClick={add}
-                        />
-                    );
-                })}
+                {messages.length > 0 ? (
+                    messages.map((message, index) => {
+                        const id = randomId();
+                        const lastMessages = index >= messages.length - 3;
+                        const lastMessage = index === messages.length - 1;
+                        return (
+                            <MessageContainer
+                                key={id}
+                                origin={message.origin}
+                                text={message.text}
+                                buttons={message.buttons}
+                                lastMessages={lastMessages}
+                                lastMessage={lastMessage}
+                            />
+                        );
+                    })
+                ) : (
+                    <span>No messages received, yet!</span>
+                )}
+                {showInput && <InputBar />}
             </div>
         );
     }
@@ -68,4 +66,7 @@ ChatContainer.propTypes = {
     messages: PropTypes.array
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ChatContainer);
+export default connect(
+    mapStateToProps,
+    null
+)(ChatContainer);

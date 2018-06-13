@@ -1,8 +1,10 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
 import ChatContainer from '../components/ChatContainer';
+import makeStore from '../store';
 
 const messages = [
     {
@@ -68,16 +70,13 @@ const messages = [
                 id: 7,
                 text: "What's the agenda?",
                 goto: 2
-            },
-            {
-                id: 8,
-                text: 'Where is it being hosted?',
-                goto: 3
             }
         ]
     }
 ];
 
-storiesOf('ChatContainer', module).add('A Simple chat', () => (
-    <ChatContainer messages={messages} />
-));
+const store = makeStore({ messages });
+
+storiesOf('ChatContainer', module)
+    .addDecorator(story => <Provider store={store}>{story()}</Provider>)
+    .add('A Simple chat', () => <ChatContainer />);

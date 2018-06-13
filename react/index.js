@@ -1,4 +1,4 @@
-import store from './store';
+import makeStore from './store';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -9,13 +9,12 @@ import { messageAdd } from './actions/messages';
 import { randomId } from './utils/generation';
 
 export const ChatComponent = ({ url, config }) => {
-    console.log(url);
-    console.log(config);
+    const store = makeStore();
     const add = message => store.dispatch(messageAdd(message));
-    let webSocket = WebSocket(url, config, add);
+    WebSocket(url, config, add);
     return (
         <Provider store={store}>
-            <ChatContainer WebSocket={webSocket} />
+            <ChatContainer />
         </Provider>
     );
 };
@@ -35,10 +34,7 @@ class ReactChatUI {
                 workflowID,
                 sessionID
             };
-            ReactDOM.render(
-                <ChatComponent url={url} config={config} />,
-                element
-            );
+            ReactDOM.render(<ChatComponent url={url} config={config} />, element);
         } else {
             console.error(
                 'React Chat UI: expected element to be a DOM element, instead got: ',

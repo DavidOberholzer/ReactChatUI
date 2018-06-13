@@ -10,8 +10,8 @@ const MessageContainer = ({
     origin,
     text,
     buttons,
+    lastMessages,
     lastMessage,
-    onClick,
     ...rest
 }) => (
     <div
@@ -25,13 +25,13 @@ const MessageContainer = ({
             }`}
         >
             <Message
-                modifiers={`${modifiers} ${lastMessage ? '' : 'Message--old'}`}
+                modifiers={`${modifiers} ${lastMessages ? '' : 'Message--old'}`}
                 origin={origin}
             >
                 {text}
             </Message>
         </div>
-        {buttons ? (
+        {buttons && lastMessage ? (
             <div className="ButtonContainer">
                 {buttons.map(button => {
                     let id = randomId();
@@ -41,7 +41,7 @@ const MessageContainer = ({
                             modifiers={`Button--plain ${
                                 lastMessage ? '' : 'Button--disabled'
                             }`}
-                            onClick={() => onClick(button)}
+                            button={button}
                         >
                             {button.text}
                         </Button>
