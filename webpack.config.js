@@ -5,7 +5,8 @@ module.exports = {
     output: {
         path: __dirname + '/src/',
         filename: 'react-chat-ui.js',
-        publicPath: '/src/'
+        publicPath: '/src/',
+        libraryTarget: 'commonjs2'
     },
     module: {
         rules: [
@@ -55,5 +56,8 @@ module.exports = {
     plugins: [
         // Output extracted CSS to a file
         new ExtractTextPlugin('react-chat-ui.css')
-    ]
+    ],
+    externals: {
+        'react': 'commonjs react' // this line is just to use the React dependency of our parent-testing-project instead of using our own React.
+    }
 };
