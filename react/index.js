@@ -7,15 +7,26 @@ import ChatContainer from './components/ChatContainer';
 import WebSocket from './utils/client';
 import { messageAdd } from './actions/messages';
 import { randomId } from './utils/generation';
+import reducers from './reducers';
 
-export const ChatComponent = ({ url, config }) => {
-    const store = makeStore();
+// Export all reducers and actions for own store usage.
+export const ChatUIReducers = reducers;
+export const ChatUImessageAdd = messageAdd;
+
+export const ChatComponent = ({ url, config, store = null }) => {
+    let useProvider = false;
+    if (!store) {
+        store = makeStore();
+        useProvider = true;
+    }
     const add = message => store.dispatch(messageAdd(message));
     WebSocket(url, config, add);
-    return (
+    return useProvider ? (
         <Provider store={store}>
             <ChatContainer />
         </Provider>
+    ) : (
+        <ChatContainer />
     );
 };
 
