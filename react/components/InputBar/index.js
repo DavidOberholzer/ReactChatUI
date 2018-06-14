@@ -28,9 +28,11 @@ class InputBar extends Component {
         const { onSubmit, messages } = this.props;
 
         if (event.which === 13) {
+            const lastMessage = messages[messages.length - 1];
             const message = {
                 text: this.state.value,
-                input: messages[messages.length - 1].input
+                input: lastMessage.input,
+                goto: lastMessage.auto
             };
             WebSocket().send(JSON.stringify(message));
             onSubmit({

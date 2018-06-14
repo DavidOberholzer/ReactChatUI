@@ -28,7 +28,7 @@ class ReactChatUI {
             url: 'http://localhost:3000/chat'
         }
     ) {
-        if (element && element.nodeName) {
+        if (element && element.nodeName && workflowID) {
             this.element = element;
             let config = {
                 workflowID,
@@ -37,8 +37,9 @@ class ReactChatUI {
             ReactDOM.render(<ChatComponent url={url} config={config} />, element);
         } else {
             console.error(
-                'React Chat UI: expected element to be a DOM element, instead got: ',
-                element
+                workflowID
+                    ? `React Chat UI: expected element to be a DOM element, instead got: ${element}`
+                    : `React Chat UI: No workflowID provided.`
             );
         }
     }

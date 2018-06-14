@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import { messageAdd } from '../../actions/messages';
 import InputBar from '../InputBar';
@@ -8,12 +9,9 @@ import MessageContainer from '../MessageContainer';
 import { MESSAGE_ADD } from '../../actionTypes';
 import { randomId } from '../../utils/generation';
 
-const mapStateToProps = state => {
-    console.log(state);
-    return {
-        messages: state.messages.messages
-    };
-};
+const mapStateToProps = state => ({
+    messages: state.messages.messages
+});
 
 class ChatContainer extends React.Component {
     constructor(props) {
@@ -37,26 +35,36 @@ class ChatContainer extends React.Component {
         }
         return (
             <div className="ChatContainer">
-                {messages.length > 0 ? (
-                    messages.map((message, index) => {
-                        const id = randomId();
-                        const lastMessages = index >= messages.length - 3;
-                        const lastMessage = index === messages.length - 1;
-                        return (
-                            <MessageContainer
-                                key={id}
-                                origin={message.origin}
-                                text={message.text}
-                                buttons={message.buttons}
-                                lastMessages={lastMessages}
-                                lastMessage={lastMessage}
-                            />
-                        );
-                    })
-                ) : (
-                    <span>No messages received, yet!</span>
-                )}
+                <ReactCSSTransitionGroup
+                    transitionName="message"
+                    transitionEnterTimeout={200}
+                    transitionLeaveTimeout={0}
+                >
+                    {messages.length > 0 ? (
+                        messages.map((message, index) => {
+                            const id = message.timeAdded;
+                            const lastMessage = index === messages.length - 1;
+                            return (
+                                <MessageContainer
+                                    key={id}
+                                    origin={message.origin}
+                                    text={message.text}
+                                    buttons={message.buttons}
+                                    lastMessage={lastMessage}
+                                />
+                            );
+                        })
+                    ) : (
+                        <span>No messages received, yet!</span>
+                    )}
+                </ReactCSSTransitionGroup>
                 {showInput && <InputBar />}
+                <div
+                    style={{ height: '100%', opacity: 0 }}
+                    rel={el => {
+                        this._last = el;
+                    }}
+                />
             </div>
         );
     }

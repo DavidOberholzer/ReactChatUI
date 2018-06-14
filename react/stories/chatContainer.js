@@ -75,7 +75,7 @@ const messages = [
     }
 ];
 
-const store = makeStore({ messages });
+const store = makeStore({ messages: { messages } });
 
 storiesOf('ChatContainer', module)
     .addDecorator(story => <Provider store={store}>{story()}</Provider>)

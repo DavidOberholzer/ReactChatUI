@@ -6,6 +6,7 @@ const getWebSocketClient = (url, config, receiveHandler) => {
         webSocket.onopen = () => {
             console.log('WebSocket connection opened!');
         };
+        webSocket.send(JSON.parse({ workflowID: config.workflowID }));
         webSocket.onmessage = event => {
             console.log('Message Received');
             console.log(event.data);

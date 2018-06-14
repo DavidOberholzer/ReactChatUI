@@ -10,7 +10,6 @@ const MessageContainer = ({
     origin,
     text,
     buttons,
-    lastMessages,
     lastMessage,
     ...rest
 }) => (
@@ -25,7 +24,7 @@ const MessageContainer = ({
             }`}
         >
             <Message
-                modifiers={`${modifiers} ${lastMessages ? '' : 'Message--old'}`}
+                modifiers={`${modifiers} ${lastMessage ? '' : 'Message--old'}`}
                 origin={origin}
             >
                 {text}

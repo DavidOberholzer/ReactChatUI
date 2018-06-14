@@ -3,7 +3,11 @@
     "version": "0.1",
     "description": "A react based chat UI",
     "main": "lib/index.js",
-    "files": ["css", "lib", "umd"],
+    "files": [
+        "css",
+        "lib",
+        "umd"
+    ],
     "repository": "https://github.com/DavidOberholzer/ReactChatUI",
     "author": "David Oberholzer",
     "license": "MIT",
@@ -39,6 +43,7 @@
     "dependencies": {
         "prop-types": "^15.6.0",
         "react": "^16.2.0",
+        "react-addons-css-transition-group": "^15.6.2",
         "react-dom": "^16.2.0",
         "react-redux": "^5.0.7",
         "react-router-dom": "^4.2.2",
