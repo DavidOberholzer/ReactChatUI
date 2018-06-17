@@ -5,7 +5,6 @@ module.exports = {
     output: {
         path: __dirname + '/src/',
         filename: 'index.js',
-        publicPath: '/src/',
         libraryTarget: 'commonjs2'
     },
     module: {
@@ -17,7 +16,8 @@ module.exports = {
                     {
                         loader: 'babel-loader',
                         options: {
-                            presets: ['react', 'es2015', 'stage-0']
+                            presets: ['react', 'es2015', 'stage-0', 'env'],
+                            plugins: ['transform-object-rest-spread', 'transform-react-jsx']
                         }
                     }
                 ]
@@ -58,6 +58,6 @@ module.exports = {
         new ExtractTextPlugin('react-chat-ui.css')
     ],
     externals: {
-        'react': 'commonjs react'
+        react: 'commonjs react'
     }
 };
