@@ -1,3 +1,5 @@
+# DEPRECATED! MOVED INTO NODECHATENGINE!
+
 # ReactChatUI
 
 This is my React-Redux chat UI using WebSockets to talk to a websocket based Chat Engine. Mainly made to plugin with my Node-Chat-Engine, but can plugin to any simple chat engine you make that fits the mold.

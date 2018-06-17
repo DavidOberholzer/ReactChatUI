@@ -4,8 +4,7 @@ module.exports = {
     entry: './react/main.js',
     output: {
         path: __dirname + '/src/',
-        filename: 'index.js',
-        libraryTarget: 'commonjs2'
+        filename: 'index.js'
     },
     module: {
         rules: [

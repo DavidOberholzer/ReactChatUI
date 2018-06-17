@@ -7,9 +7,6 @@ import ChatContainer from './components/ChatContainer';
 import WebSocket from './utils/client';
 import { messageAdd } from './actions/messages';
 import { randomId } from './utils/generation';
-import reducer from './reducers/messages';
-
-export const messageReducer = reducer;
 
 export const ChatComponent = ({ url, config, store = null }) => {
     let useProvider = false;
