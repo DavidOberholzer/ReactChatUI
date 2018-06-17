@@ -3,7 +3,10 @@ module.exports = {
     npm: {
         esModules: false,
         umd: {
-            global: 'ReactChatUI'
+            global: 'ReactChatUI',
+            externals: {
+                react: 'React'
+            }
         }
     }
 };
