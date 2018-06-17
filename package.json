@@ -1,6 +1,6 @@
 {
     "name": "personal-react-chat-ui",
-    "version": "0.2.3",
+    "version": "0.2.4",
     "description": "A react based chat UI",
     "main": "src/index.js",
     "files": [
